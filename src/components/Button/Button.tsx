@@ -1,5 +1,5 @@
-import React from "react";
+import '../../styles/styles.css'
 
 export default function Button() {
-  return <button>Olá</button>;
+  return <button className="px-4 bg-pink-950" >Olá 2</button>;
 }

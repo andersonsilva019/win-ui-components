@@ -1,17 +1,40 @@
-import type { StorybookConfig } from '@storybook/react-webpack5';
+import type { StorybookConfig } from "@storybook/react-webpack5";
 
 const config: StorybookConfig = {
-  "stories": [
-    "../src/**/*.mdx",
-    "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"
-  ],
-  "addons": [
+  stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|mjs|ts|tsx)"],
+  addons: [
     "@storybook/addon-webpack5-compiler-swc",
-    "@storybook/addon-docs"
+    "@storybook/addon-docs",
+    "@storybook/addon-styling-webpack",
+    ({
+      name: "@storybook/addon-styling-webpack",
+
+      options: {
+        rules: [{
+      test: /\.css$/,
+      sideEffects: true,
+      use: [
+          require.resolve("style-loader"),
+          {
+              loader: require.resolve("css-loader"),
+              options: {
+                  
+                  importLoaders: 1,
+              },
+          },{
+    loader: require.resolve("postcss-loader"),
+    options: {
+    implementation: require.resolve("postcss"),
+    },
+    },
+      ],
+    },],
+      }
+    })
   ],
-  "framework": {
-    "name": "@storybook/react-webpack5",
-    "options": {}
-  }
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
 };
 export default config;
