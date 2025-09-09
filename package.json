@@ -15,6 +15,10 @@
     "build": "npm run build-tailwind && npm run build-components",
     "release": "npm publish --access public"
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "tag": "latest"
+  },
   "keywords": [],
   "files": [
     "dist",
