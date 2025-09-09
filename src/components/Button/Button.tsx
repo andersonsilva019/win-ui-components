@@ -9,10 +9,21 @@ export interface ButtonProps
   iconPosition?: "left" | "right";
 }
 
-const SIZES = {
-  small: "py-1 px-4 text-sm",
-  medium: "py-2 px-8 text-base",
-  large: "py-3 px-12 text-lg",
+
+export default function Button({
+  children,
+  icon,
+  className,
+  size = "medium",
+  variant = "primary",
+  iconPosition = "left",
+  ...props
+}: ButtonProps) {
+
+  const SIZES = {
+  small: "pt-1 pb-1 pr-4 pl-4 text-sm",
+  medium: "pt-2 pb-2 pr-8 pl-8 text-base",
+  large: "pt-3 pb-3 pr-12 pl-12 text-lg",
 };
 
 const VARIANTS = {
@@ -42,15 +53,7 @@ const VARIANTS = {
   `,
 };
 
-export default function Button({
-  children,
-  icon,
-  className,
-  size = "medium",
-  variant = "primary",
-  iconPosition = "left",
-  ...props
-}: ButtonProps) {
+
   return (
     <button
       className={cn(
