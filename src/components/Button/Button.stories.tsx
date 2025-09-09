@@ -5,7 +5,7 @@ import { CheckFatIcon } from "@phosphor-icons/react";
 import { Button } from ".";
 
 const meta = {
-  title: "IU/Button",
+  title: "Button",
   component: Button,
 } satisfies Meta<typeof Button>;
 
