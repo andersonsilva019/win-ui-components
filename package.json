@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@phosphor-icons/react": "^2.1.10",
+    "@semantic-release/npm": "^12.0.2",
     "@storybook/addon-docs": "^9.1.5",
     "@storybook/addon-styling-webpack": "^2.0.0",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
