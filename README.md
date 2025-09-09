@@ -1,4 +1,4 @@
-# @win-ui/kit
+# @win-ui/components
 
 Uma biblioteca de componentes para projetos pessoais.
 
@@ -8,5 +8,5 @@ Uma biblioteca de componentes para projetos pessoais.
 
 Via npm:
 ```bash
-npm install @win-ui/kit
+npm install @win-ui/components
 ```
