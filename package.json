@@ -1,6 +1,6 @@
 {
-  "name": "@win-ui/kit",
-  "version": "1.0.0",
+  "name": "@win-ui/components",
+  "version": "2.0.6",
   "description": "",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -8,12 +8,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-tailwind": "npx @tailwindcss/cli -i ./src/styles/styles.css -o ./dist/styles.css --minify",
+    "build-tailwind": "tailwindcss -i ./src/styles/styles.css -o ./dist/styles.css --minify",
     "build-storybook": "storybook build",
     "build-components": "rollup -c",
     "build:types": "tsc -p tsconfig.types.json",
-    "dev": "npm run build:types && rollup -c -w",
-    "build": "npm run build-tailwind && npm run build-components",
+    "dev": "npm run build-tailwind && npm run build:types && rollup -c -w",
+    "build": "npm run build-tailwind && npm run build:types && npm run build-components",
     "release": "npm publish --access public"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "@phosphor-icons/react": "^2.1.10",
     "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
     "@rollup/plugin-typescript": "^12.1.4",
     "@storybook/addon-docs": "^9.1.5",
     "@storybook/addon-styling-webpack": "^2.0.0",

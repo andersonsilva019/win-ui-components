@@ -4,35 +4,45 @@ import commonjs from "@rollup/plugin-commonjs";
 import dts from "rollup-plugin-dts";
 import postcss from "rollup-plugin-postcss";
 import packageJson from "./package.json" assert { type: "json" };
+import terser from '@rollup/plugin-terser';
 
 export default [
-  // JS (CJS + ESM)
   {
     input: "src/index.ts",
     output: [
       {
-        file: packageJson.main, // dist/cjs/index.js
+        file: packageJson.main,
         format: "cjs",
         sourcemap: true,
+        plugins: [terser()]
       },
       {
-        file: packageJson.module, // dist/esm/index.js
+        file: packageJson.module,
         format: "esm",
         sourcemap: true,
+        plugins: [terser()]
       },
     ],
     plugins: [
       resolve({ extensions: [".js", ".jsx", ".ts", ".tsx"] }),
       commonjs(),
       typescript({
-        tsconfig: "./tsconfig.json", // sem declarações
+        tsconfig: "./tsconfig.json",
       }),
-      postcss({ extensions: [".css"], inject: true, extract: false }),
+      postcss({
+        config: {
+          path: "./postcss.config.js",
+        },
+        extensions: [".css"],
+        minimize: true,
+        inject: {
+          insertAt: "top",
+        },
+      }),
     ],
     external: ["react", "react-dom", "react/jsx-runtime"],
   },
 
-  // Types (.d.ts)
   {
     input: "dist/types/index.d.ts", // saída do tsc (tsconfig.types.json)
     output: [{ file: "dist/index.d.ts", format: "esm" }],
