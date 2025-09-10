@@ -1,11 +1,10 @@
-// Replace your-framework with the framework you are using, e.g. react-vite, nextjs, nextjs-vite, etc.
 import type { Meta, StoryObj } from "@storybook/react-webpack5";
 import { CheckFatIcon } from "@phosphor-icons/react";
 
 import { Button } from ".";
 
 const meta = {
-  title: "Button",
+  title: "UI/Button",
   component: Button,
 } satisfies Meta<typeof Button>;
 

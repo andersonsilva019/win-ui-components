@@ -1,0 +1,35 @@
+name: Publish Docs on Netlify
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+           node-version: "lts/*"
+          cache: npm
+          cache-dependency-path: '**/package-lock.json'
+
+      - run: npm ci
+
+      - name: Deploy storybook to Netlify
+        uses: jsmrcaga/action-netlify-deploy@master
+        with:
+          build_command: npm run build-storybook
+          build_directory: packages/docs/storybook-static
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_DEPLOY_MESSAGE: "Deployed from GitHub action"
+          NETLIFY_DEPLOY_TO_PROD: true
+
+      - run: "echo $NETLIFY_LIVE_URL"
+      
