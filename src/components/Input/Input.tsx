@@ -1,5 +1,5 @@
 
-
+// default input component
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   errorMessage?: string;
   className?: string;
