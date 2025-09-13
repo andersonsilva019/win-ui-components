@@ -78,3 +78,14 @@ export const WithIcon: Story = {
     },
   },
 };
+
+export const WithLabel: Story = {
+  args: {
+    errorMessage: "",
+    label: "Input Label",
+  },
+  argTypes: {
+    label: { description: "Label text", control: "text"}
+  },
+};
+

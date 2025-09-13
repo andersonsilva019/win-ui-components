@@ -1,6 +1,8 @@
+import { useId } from "react";
 import { cn } from "../../utils/cn";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
   errorMessage?: string;
   className?: string;
   icon?: React.ReactNode;
@@ -15,10 +17,16 @@ export default function Input({
   iconPosition = 'right',
   onIconAction, 
   disabled,
+  label = '',
+  name,
   ...props 
 }: InputProps) {
+
+  const labelId = useId()
+
   return (
     <div className={cn("w-full flex flex-col", className)}>
+      {label && <label className="mb-1" htmlFor={`${name}-${labelId}`}>{label}</label>}
       <div
         className={cn(
           `flex items-center gap-2 p-3 border bg-white rounded-md text-black
@@ -34,6 +42,7 @@ export default function Input({
         )}
       >
         <input
+          id={`${name}-${labelId}`}
           className="outline-0 placeholder:text-border w-full
             focus:outline-none
             disabled:cursor-not-allowed disabled:bg-disabled disabled:placeholder:text-border
